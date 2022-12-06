@@ -22,8 +22,8 @@ public class Main {
                 "1  - Visa alla Dealer House\n" +
                 "2  - Lägga till en ny Dealer House\n" +
                 "3  - Uppdatera en Dealer House\n" +
-                "4  - Ta bort en bok\n" +
-                "5  - Sök efter en författares böckerk\n" +
+                "4  - Ta bort en Dealer House\n" +
+                "5  - Sök efter en Dealer House ID\n" +
                 "6  - Visa en lista över alla val.");
     }
 
@@ -38,8 +38,8 @@ public class Main {
         insert(inputDealerHouseName,inputDealerPlats);
 
     }
-    private static void deleteBook(){
-        System.out.println("Skriv in id:t på boken som ska tas bort: ");
+    private static void deleteDealerHouse(){
+        System.out.println("Skriv in id:t på Dealer House som ska tas bort: ");
         int inputId = scanner.nextInt();
         delete(inputId);
         scanner.nextLine();
@@ -65,26 +65,26 @@ public class Main {
         }
     }
 
-    private static void searchBook(){
-        String sql = "SELECT * FROM bok WHERE bokForfattare = ? ";
+    private static void searchDealerHouse(int dealerHouseID){
+        String sql = "SELECT * FROM dealer_House WHERE dealerHouseID_PK = ? ";
 
         try (
                 Connection conn = connect();
                 PreparedStatement pstmt  = conn.prepareStatement(sql)){
 
-            String inputForfattare = "Astrid Lindgren";
+//            String inputForfattare = "Astrid Lindgren";
+
 
             // set the value
-            pstmt.setString(1,inputForfattare);
+            pstmt.setInt(1,dealerHouseID);
             //
             ResultSet rs  = pstmt.executeQuery();
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getInt("bokId") +  "\t" +
-                        rs.getString("bokTitel") + "\t" +
-                        rs.getString("bokForfattare") + "\t" +
-                        rs.getString("bokPris"));
+                System.out.println(rs.getInt("dealerHouseID_PK") +  "\t" +
+                        rs.getString("dealerHouseName") + "\t" +
+                        rs.getString("dealerHousePlace"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -132,7 +132,7 @@ public class Main {
 
     // Delete mot bok-tabellen i databasen
     private static void delete(int id) {
-        String sql = "DELETE FROM bok WHERE bokId = ?";
+        String sql = "DELETE FROM dealer_House WHERE dealerHouseID_PK = ?";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -168,20 +168,31 @@ public class Main {
 
                 case 2:
                     insertDealerHouse();
-                    //insert("Sagan om ringen", "Tolkien, J.R.R", 120);
+
                     break;
 
                 case 3:
-                    update(scanner.nextLine(), scanner.nextLine(), scanner.nextInt());
+                    System.out.println("Skriv namn av Dealer House: " );
+                    String dealerHouse = scanner.nextLine();
+
+                    System.out.println("Skriv ort av Dealer House");
+                    String dealerPlace = scanner.nextLine();
+
+                    System.out.println("Skriv in ID som du vill update");
+                    int ID = scanner.nextInt();
+
+                    update(dealerHouse, dealerPlace, ID);
                     break;
 
                 case 4:
                     //delete(1);
-                    deleteBook();
+                    deleteDealerHouse();
                     break;
 
                 case 5:
-                    searchBook();
+                    System.out.println("Skriv in vilken dealer house ID vill du söka");
+                    int dealerHouseID = scanner.nextInt();
+                    searchDealerHouse(dealerHouseID);
                     break;
 
                 case 6:
