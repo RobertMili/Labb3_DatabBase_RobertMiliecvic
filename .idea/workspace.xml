@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcf3aebc-3532-4cad-b398-b570adb81467" name="Changes" comment="asd">
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="dcf3aebc-3532-4cad-b398-b570adb81467" name="Changes" comment="asd" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,7 +61,7 @@
       <updated>1670317904970</updated>
       <workItem from="1670317906725" duration="6742000" />
       <workItem from="1670331790894" duration="160000" />
-      <workItem from="1670331970683" duration="4582000" />
+      <workItem from="1670331970683" duration="4669000" />
     </task>
     <task id="LOCAL−00001" summary="asd">
       <created>1670331713218</created>
@@ -79,7 +75,13 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1670334940504</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="asd">
+      <created>1670336669705</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1670336669705</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
