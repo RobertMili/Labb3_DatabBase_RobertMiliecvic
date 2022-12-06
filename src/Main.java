@@ -20,23 +20,23 @@ public class Main {
         System.out.println("\nVälj:\n");
         System.out.println("0  - Stäng av\n" +
                 "1  - Visa alla Dealer House\n" +
-                "2  - Lägga till en ny bok\n" +
-                "3  - Uppdatera en bok\n" +
+                "2  - Lägga till en ny Dealer House\n" +
+                "3  - Uppdatera en Dealer House\n" +
                 "4  - Ta bort en bok\n" +
                 "5  - Sök efter en författares böckerk\n" +
                 "6  - Visa en lista över alla val.");
     }
 
     // Metod för användarens inmatningar (som en controller)
-    private static void insertBook(){
-        System.out.println("Skriv in titel på boken: ");
-        String inputTitel = scanner.nextLine();
-        System.out.println("Skriv in författare på boken: ");
-        String inputForfattare = scanner.nextLine();
-        System.out.println("Skriv in pris på boken: ");
-        int inputPris = scanner.nextInt();
-        insert(inputTitel,inputForfattare,inputPris);
-        scanner.nextLine();
+    private static void insertDealerHouse(){
+        System.out.println("Skriv in dealer House name: ");
+        String inputDealerHouseName = scanner.nextLine();
+
+        System.out.println("Skriv in dealer House plats: ");
+        String inputDealerPlats = scanner.nextLine();
+
+        insert(inputDealerHouseName,inputDealerPlats);
+
     }
     private static void deleteBook(){
         System.out.println("Skriv in id:t på boken som ska tas bort: ");
@@ -92,40 +92,39 @@ public class Main {
     }
 
     // Metod för insert i bok-tabellen mot databasen
-    private static void insert(String titel, String forfattare, int pris) {
-        String sql = "INSERT INTO bok(bokTitel, bokForfattare, bokPris) VALUES(?,?,?)";
+    private static void insert(String dealerHouseName, String dealerHousePLace) {
+        String sql = "INSERT INTO dealer_House(dealerHouseName, dealerHousePlace) VALUES(?,?)";
 
         try{
             Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, titel);
-            pstmt.setString(2, forfattare);
-            pstmt.setInt(3, pris);
+            pstmt.setString(1, dealerHouseName);
+            pstmt.setString(2, dealerHousePLace);
             pstmt.executeUpdate();
-            System.out.println("Du har lagt till en ny bok");
+            System.out.println("Du har lagt till en ny dealer House name");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
     // Update mot bok-tabellen i databasen
-    private static void update(String forfattare, String titel, int pris, int id) {
-        String sql = "UPDATE bok SET bokForfattare = ? , "
-                + "bokTitel = ? , "
-                + "bokPris = ? "
-                + "WHERE bokId = ?";
+    private static void update(String dealerHouseName, String dealerHousePlace,int ID) {
+        String sql = "UPDATE dealer_House SET dealerHouseName = ? , "
+                + "dealerHousePlace = ?  "
+                + "WHERE dealerHouseID_PK = ?";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             // set the corresponding param
-            pstmt.setString(1, titel);
-            pstmt.setString(2, forfattare);
-            pstmt.setInt(3, pris);
-            pstmt.setInt(4, id);
+
+            pstmt.setString(1, dealerHouseName);
+            pstmt.setString(2, dealerHousePlace);
+            pstmt.setInt(3, ID);
+
             // update
             pstmt.executeUpdate();
-            System.out.println("Du har uppdaterat vald bok");
+            System.out.println("Du har uppdaterat vald dealer House");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -168,12 +167,12 @@ public class Main {
                     break;
 
                 case 2:
-                    insertBook();
+                    insertDealerHouse();
                     //insert("Sagan om ringen", "Tolkien, J.R.R", 120);
                     break;
 
                 case 3:
-                    update("Bilbo", "Tolkien, J.R.R", 100, 1);
+                    update(scanner.nextLine(), scanner.nextLine(), scanner.nextInt());
                     break;
 
                 case 4:
