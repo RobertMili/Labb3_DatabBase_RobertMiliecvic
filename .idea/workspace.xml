@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcf3aebc-3532-4cad-b398-b570adb81467" name="Changes" comment="asd">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoJdbc2022.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Labb3_DataBase_RobertMilicevic.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +70,7 @@
       <workItem from="1670331790894" duration="160000" />
       <workItem from="1670331970683" duration="4669000" />
       <workItem from="1670343358939" duration="477000" />
-      <workItem from="1670401032098" duration="6222000" />
+      <workItem from="1670401032098" duration="14753000" />
     </task>
     <task id="LOCAL−00001" summary="asd">
       <created>1670331713218</created>
@@ -98,7 +96,13 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1670343375874</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="asd">
+      <created>1670410355456</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1670410355456</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
