@@ -142,27 +142,24 @@ public class Main {
         }
     }
 
-    private static void deleteDealerHouse() {
-        System.out.println("Skriv in id:t på Dealer House som ska tas bort: ");
-        int inputId = scanner.nextInt();
-        delete(inputId);
-        scanner.nextLine();
-    }
 
-    private static void insertDealer() {
+    private static void updateDealer() {
         System.out.println("Skriv in Försäljare name: ");
         String inputDealerNamne = scanner.nextLine();
 
-        System.out.println("Skriv in Försäljare plats: ");
+        System.out.println("Skriv in Försäljare erfarenheten i års : ");
         String inputDealerPlats = scanner.nextLine();
 
-        updateDealers();
+        System.out.println("Skriv in Försäljare ID för update: ");
+        int dealerID = scanner.nextInt();
+
+        updateDealers(inputDealerNamne, inputDealerPlats, dealerID);
     }
 
-    private static void updateDealers(String dealerName, String dealersYearsOfWork, int ID) {
-        String sql = "UPDATE dealer_House SET dealerHouseName = ? , "
-                + "dealerHousePlace = ?  "
-                + "WHERE dealerHouseID_PK = ?";
+    private static void updateDealers(String dealerName, String dealersYearsOfWork, int ID) {//fix this
+        String sql = "UPDATE Dealer SET  dealerName  = ? , "
+                + "dealerYearsOfWorks= ?  "
+                + "WHERE dealerID_PK = ?";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -175,14 +172,72 @@ public class Main {
 
             // update
             pstmt.executeUpdate();
-            System.out.println("Du har uppdaterat vald dealer House");
+            System.out.println("Du har uppdaterat vald dealer ");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static void searchDealerHouse(int dealerHouseID) {
-        String sql = "SELECT * FROM dealer_House WHERE dealerHouseID_PK = ? ";
+    private static void updateCars() {
+        System.out.println("Skriv in Bil model namn: ");
+        String inputCarsNamn = scanner.nextLine();
+
+        System.out.println("Skriv in bil registering nummer: ");
+        String inputRegisteringNumer = scanner.nextLine();
+
+        System.out.println("Skriv in bil plats: ");
+        String inputBilPlats = scanner.nextLine();
+
+        System.out.println("Skriv in bil pris: ");
+        int inputBilPrice = scanner.nextInt();
+
+        System.out.println("Skriv in bil ISBN: ");
+        int inputBilISBN = scanner.nextInt();
+
+        System.out.println("Skriv in bil ID för update ");
+        int inputBilID = scanner.nextInt();
+
+
+        updateCarsSQL(inputCarsNamn, inputRegisteringNumer, inputBilPlats, inputBilPrice, inputBilISBN, inputBilID);
+    }
+
+    private static void updateCarsSQL(String inputCarsNamn, String inputRegisteringNumer, String inputBilPlats, int inputBilPrice, int inputBilISBN, int inputBilID) {
+        String sql = "UPDATE Cars SET  carModel = ?  , "
+                + "carRegisteringNumber = ?  , "
+                + "carPlace = ?  , "
+                + "carsPrice = ?  , "
+                + "carsISBN = ?   "
+                + "WHERE carID_PK = ?";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+
+            pstmt.setString(1, inputCarsNamn);
+            pstmt.setString(2, inputRegisteringNumer);
+            pstmt.setString(3, inputBilPlats);
+            pstmt.setInt(4, inputBilPrice);
+            pstmt.setInt(5, inputBilISBN);
+            pstmt.setInt(6, inputBilID);
+
+            // update
+            pstmt.executeUpdate();
+            System.out.println("Du har uppdaterat vald Bil");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    private static int getDealerID() {
+        System.out.println("Skriv in vilken dealer house ID vill du söka");
+        int dealerHouseID = scanner.nextInt();
+        return dealerHouseID;
+    }
+
+    private static void searchDealerSQL(int dealerHouseID) {
+        String sql = "SELECT * FROM dealer WHERE dealerID_PK = ? ";
 
         try (
                 Connection conn = connect();
@@ -198,9 +253,51 @@ public class Main {
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getInt("dealerHouseID_PK") + "\t" +
-                        rs.getString("dealerHouseName") + "\t" +
-                        rs.getString("dealerHousePlace"));
+                System.out.println(
+                        "Försäljare ID: " + rs.getInt("dealerID_PK") + "\n" +
+                                "Försäljare namn: " + rs.getString("dealerName") + "\n" +
+                                "Försäljare erarnheten: " + rs.getString("dealerYearsOfWorks") +
+                                "\n------------------------------");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void searchingCarsID() {
+        System.out.println("Skriv in vilken BIL ID vill du söka");
+        int dealerHouseID = scanner.nextInt();
+
+        searchCarsSQL(dealerHouseID);
+
+    }
+
+    private static void searchCarsSQL(int dealerHouseID) {
+        String sql = "SELECT * FROM Cars WHERE carID_PK = ? ";
+
+        try (
+                Connection conn = connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+//            String inputForfattare = "Astrid Lindgren";
+
+
+            // set the value
+            pstmt.setInt(1, dealerHouseID);
+            //
+            ResultSet rs = pstmt.executeQuery();
+
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println(
+                        "Bil model ID: " + rs.getInt("carID_PK") + "\n" +
+                                "Bil model namn: " + rs.getString("carModel") + "\n" +
+                                "Bil registreringsnummer: " + rs.getString("carRegisteringNumber") + "\n" +
+                                "Bil plats: " + rs.getString("carPlace") + "\n" +
+                                "Bil pris: " + rs.getInt("carsPrice") + "\n" +
+                                "Bil ISBN: " + rs.getInt("carsISBN") + "\n" +
+                                "Försäljare ID nummer: " + rs.getInt("dealer_FK") +
+                                "\n------------------------------");
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -208,8 +305,15 @@ public class Main {
     }
 
     // Delete mot bok-tabellen i databasen
-    private static void delete(int id) {
-        String sql = "DELETE FROM dealer_House WHERE dealerHouseID_PK = ?";
+
+    private static void deleteDealer() {
+        System.out.println("Skriv in ID på Dealer som ska tas bort: ");
+        int inputId = scanner.nextInt();
+        deleteCar(inputId);
+    }
+
+    private static void deleteDealer(int id) {
+        String sql = "DELETE FROM dealer WHERE dealerID_PK = ?";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -218,7 +322,29 @@ public class Main {
             pstmt.setInt(1, id);
             // execute the delete statement
             pstmt.executeUpdate();
-            System.out.println("Du har tagit bort boken");
+            System.out.println("Du har tagit bort dealer");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void deleteCars() {
+        System.out.println("Skriv in ID på Bilen som ska tas bort: ");
+        int inputId = scanner.nextInt();
+        deleteCar(inputId);
+    }
+
+    private static void deleteCar(int id) {
+        String sql = "DELETE FROM Cars WHERE carID_PK = ?";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setInt(1, id);
+            // execute the delete statement
+            pstmt.executeUpdate();
+            System.out.println("Du har tagit bort bilen!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -257,29 +383,30 @@ public class Main {
                     break;
 
                 case 4:
-                    // Uppdatera en Dealer House
-
-
-                    update(dealerHouse, dealerPlace, ID);
+                    // Uppdatera en Dealer
+                    updateDealer();
                     break;
 
                 case 5:
-                    // Uppdatera en Dealer
+                    // Uppdatera en Cars
+                    updateCars();
+                    break;
                 case 6:
-                    // ta bort en Dealer House
-                    deleteDealerHouse();
+                    // ta bort en Dealer
+                    deleteDealer();
                     break;
 
                 case 7:
-                    //Ta bort en Dealer
+                    //Ta bort en Cars
+                    deleteCars();
                 case 8:
                     //sökning efter en Dealer House ID
-                    System.out.println("Skriv in vilken dealer house ID vill du söka");
-                    int dealerHouseID = scanner.nextInt();
-                    searchDealerHouse(dealerHouseID);
+                    getDealerID();
                     break;
                 case 9:
                     //Sök efter en Dealer
+                    searchingCarsID();
+                    break;
                 case 10:
                     printActions();
                     break;
@@ -287,5 +414,6 @@ public class Main {
         }
 
     }
+
 
 }
