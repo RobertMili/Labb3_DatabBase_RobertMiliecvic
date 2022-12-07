@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcf3aebc-3532-4cad-b398-b570adb81467" name="Changes" comment="asd" />
+    <list default="true" id="dcf3aebc-3532-4cad-b398-b570adb81467" name="Changes" comment="asd">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoJdbc2022.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Labb3_DataBase_RobertMilicevic.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +14,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -26,10 +34,11 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/dell/Downloads/sqlite-jdbc-3.34.0.jar",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.45632184",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "application.passwordSafe"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -40,7 +49,7 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="DemoJdbc2022" />
+      <module name="Labb3_DataBase_RobertMilicevic" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -62,6 +71,8 @@
       <workItem from="1670317906725" duration="6742000" />
       <workItem from="1670331790894" duration="160000" />
       <workItem from="1670331970683" duration="4669000" />
+      <workItem from="1670343358939" duration="477000" />
+      <workItem from="1670401032098" duration="6222000" />
     </task>
     <task id="LOCAL−00001" summary="asd">
       <created>1670331713218</created>
@@ -81,7 +92,13 @@
       <option name="presentableId" value="LOCAL−00003" />
       <updated>1670336669705</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL−00004" summary="asd">
+      <created>1670343375874</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1670343375874</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
